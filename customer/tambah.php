@@ -10,13 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($nama) || empty($perusahaan) || empty($alamat)) {
         $error = 'Semua kolom (Nama, Perusahaan, Alamat) wajib diisi!';
-    } elseif (!preg_match('/[a-zA-Z]/', $nama)) {
-        $error = 'Nama customer harus mengandung setidaknya satu huruf!';
-    } elseif (!preg_match('/^[a-zA-Z\s\.\-\']+$/', $nama)) {
+    } elseif (strlen(trim($nama)) < 2 || strlen(trim($perusahaan)) < 2) {
+        $error = 'Nama customer dan perusahaan minimal 2 karakter!';
+    } elseif (!preg_match('/^[a-zA-Z\s]+$/', $nama)) {
         $error = 'Nama customer hanya boleh berisi huruf dan spasi!';
-    } elseif (!preg_match('/[a-zA-Z]/', $perusahaan)) {
-        $error = 'Nama perusahaan harus mengandung setidaknya satu huruf!';
-    } elseif (!preg_match('/^[a-zA-Z\s\.\-\'&]+$/', $perusahaan)) {
+    } elseif (!preg_match('/^[a-zA-Z\s]+$/', $perusahaan)) {
         $error = 'Nama perusahaan hanya boleh berisi huruf dan spasi!';
     } else {
         $alamat     = !empty($alamat) ? $alamat : null;
@@ -63,13 +61,13 @@ include dirname(__DIR__) . '/includes/sidebar.php';
                 <div class="col-md-6 mb-3">
                     <label for="nama_customer" class="form-label">Nama Customer <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="nama_customer" name="nama_customer" 
-                           pattern="[a-zA-Z\s\.\-\']+" title="Hanya boleh huruf dan spasi"
+                           pattern="[a-zA-Z\s]+" title="Hanya boleh huruf dan spasi"
                            value="<?php echo htmlspecialchars($_POST['nama_customer'] ?? ''); ?>" required minlength="2">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="perusahaan_cust" class="form-label">Perusahaan <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="perusahaan_cust" name="perusahaan_cust"
-                           pattern="[a-zA-Z\s\.\-\'&]+" title="Hanya boleh huruf dan spasi"
+                           pattern="[a-zA-Z\s]+" title="Hanya boleh huruf dan spasi"
                            value="<?php echo htmlspecialchars($_POST['perusahaan_cust'] ?? ''); ?>" required minlength="2">
                 </div>
                 <div class="col-md-12 mb-3">

@@ -20,7 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $satuan = trim($_POST['satuan'] ?? '');
     $stock  = intval($_POST['stock'] ?? 0);
 
-    if (!empty($nama) && $price >= 0) {
+    if (empty($nama) || strlen(trim($nama)) < 2) {
+        $error = 'Nama produk wajib diisi minimal 2 karakter!';
+    } elseif (!preg_match('/^[a-zA-Z\s]+$/', $nama)) {
+        $error = 'Nama produk hanya boleh berisi huruf dan spasi!';
+    } elseif (!isset($_POST['price']) || !is_numeric($_POST['price']) || $_POST['price'] < 0) {
+        $error = 'Harga produk harus berupa angka yang valid dan tidak negatif!';
+    } elseif (!isset($_POST['stock']) || !is_numeric($_POST['stock']) || $_POST['stock'] < 0) {
+        $error = 'Stok produk harus berupa angka bulat dan tidak negatif!';
+    } else {
         $jenis  = !empty($jenis) ? $jenis : null;
         $satuan = !empty($satuan) ? $satuan : null;
 
@@ -30,8 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->close();
         header('Location: index.php?msg=ubah_ok');
         exit;
-    } else {
-        $error = 'Nama produk dan harga wajib diisi!';
     }
 }
 
@@ -67,7 +73,8 @@ include dirname(__DIR__) . '/includes/sidebar.php';
                 <div class="col-md-6 mb-3">
                     <label for="nama_produk" class="form-label">Nama Produk <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="nama_produk" name="nama_produk" 
-                           value="<?php echo htmlspecialchars($data['nama_produk']); ?>" required>
+                           pattern="[a-zA-Z\s]+" title="Hanya boleh huruf dan spasi"
+                           value="<?php echo htmlspecialchars($data['nama_produk']); ?>" required minlength="2">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="jenis" class="form-label">Jenis</label>

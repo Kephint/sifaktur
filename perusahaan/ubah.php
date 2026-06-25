@@ -28,9 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($nama) || empty($alamat) || empty($telp) || empty($fax)) {
         $error = 'Semua kolom (Nama, Alamat, Telepon, Fax) wajib diisi!';
-    } elseif (!preg_match('/[a-zA-Z]/', $nama)) {
-        $error = 'Nama perusahaan harus mengandung setidaknya satu huruf!';
-    } elseif (!preg_match('/^[a-zA-Z\s\.\-\'&]+$/', $nama)) {
+    } elseif (strlen(trim($nama)) < 2) {
+        $error = 'Nama perusahaan minimal 2 karakter!';
+    } elseif (!preg_match('/^[a-zA-Z\s]+$/', $nama)) {
         $error = 'Nama perusahaan hanya boleh berisi huruf dan spasi!';
     } elseif (!preg_match('/^[0-9]{8,15}$/', $telp)) {
         $error = 'Format telepon tidak valid! Harus berupa angka 8-15 digit.';
@@ -79,8 +79,8 @@ include dirname(__DIR__) . '/includes/sidebar.php';
                 <div class="col-md-6 mb-3">
                     <label for="nama_perusahaan" class="form-label">Nama Perusahaan <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" 
-                           pattern="[a-zA-Z\s\.\-\'&]+" title="Hanya boleh huruf dan spasi"
-                           value="<?php echo htmlspecialchars($data['nama_perusahaan']); ?>" required>
+                           pattern="[a-zA-Z\s]+" title="Hanya boleh huruf dan spasi"
+                           value="<?php echo htmlspecialchars($data['nama_perusahaan']); ?>" required minlength="2">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="alamat" class="form-label">Alamat <span class="text-danger">*</span></label>
