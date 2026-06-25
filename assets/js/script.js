@@ -1,7 +1,33 @@
 function confirmDelete(url, namaItem) {
-    if (confirm('Apakah Anda yakin ingin menghapus data "' + namaItem + '"?\n\nData yang sudah dihapus tidak dapat dikembalikan.')) {
-        window.location.href = url;
-    }
+    let oldModal = document.getElementById('customConfirmModal');
+    if (oldModal) { oldModal.remove(); }
+
+    let modalHtml = `
+    <div class="modal fade" id="customConfirmModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+          <div class="modal-header bg-danger text-white border-0">
+            <h5 class="modal-title"><i class="fa-solid fa-triangle-exclamation"></i> Konfirmasi Hapus</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center py-4">
+            <i class="fa-solid fa-trash-can text-danger mb-3" style="font-size: 3rem;"></i>
+            <p class="mb-1 fs-5">Apakah Anda yakin ingin menghapus data</p>
+            <p class="fw-bold fs-4 text-danger mb-3">"${namaItem}"?</p>
+            <p class="text-muted small mb-0">Data yang sudah dihapus tidak dapat dikembalikan.</p>
+          </div>
+          <div class="modal-footer justify-content-center border-0 bg-light">
+            <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Batal</button>
+            <a href="${url}" class="btn btn-danger px-4">Ya, Hapus Data</a>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    let modalElement = document.getElementById('customConfirmModal');
+    let bsModal = new bootstrap.Modal(modalElement);
+    bsModal.show();
     return false;
 }
 
