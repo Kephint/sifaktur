@@ -1,3 +1,7 @@
 /logs/*
 !/logs/error.log
 !/logs/.gitkeep
+
+# Laporan DOC
+*.doc
+~$*
