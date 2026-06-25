@@ -14,6 +14,11 @@ while ($p = $produks->fetch_assoc()) {
 }
 $produks->data_seek(0); 
 
+$res = $conn->query("SELECT MAX(id_faktur) as max_id FROM faktur");
+$row = $res->fetch_assoc();
+$next_id = ($row['max_id'] ?? 0) + 1;
+$auto_no = 'INV-' . date('ymd') . '-' . str_pad($next_id, 4, '0', STR_PAD_LEFT);
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $no_faktur    = trim($_POST['no_faktur'] ?? '');
@@ -122,10 +127,9 @@ include dirname(__DIR__) . '/includes/sidebar.php';
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <label for="no_faktur" class="form-label">No. Faktur <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="no_faktur" name="no_faktur" 
-                           value="<?php echo htmlspecialchars($_POST['no_faktur'] ?? ''); ?>" 
-                           placeholder="Contoh: FK/0625/003" required>
+                    <label for="no_faktur" class="form-label">No. Faktur (Otomatis)</label>
+                    <input type="text" class="form-control bg-light" id="no_faktur" name="no_faktur" 
+                           value="<?php echo htmlspecialchars($_POST['no_faktur'] ?? $auto_no); ?>" readonly>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="tgl_faktur" class="form-label">Tanggal Faktur <span class="text-danger">*</span></label>

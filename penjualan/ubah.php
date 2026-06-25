@@ -145,9 +145,9 @@ include dirname(__DIR__) . '/includes/sidebar.php';
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <label for="no_faktur" class="form-label">No. Faktur <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="no_faktur" name="no_faktur" 
-                           value="<?php echo htmlspecialchars($faktur['no_faktur']); ?>" required>
+                    <label for="no_faktur" class="form-label">No. Faktur (Otomatis)</label>
+                    <input type="text" class="form-control bg-light" id="no_faktur" name="no_faktur" 
+                           value="<?php echo htmlspecialchars($faktur['no_faktur']); ?>" readonly>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="tgl_faktur" class="form-label">Tanggal Faktur <span class="text-danger">*</span></label>
