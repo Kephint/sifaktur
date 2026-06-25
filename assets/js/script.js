@@ -1,12 +1,18 @@
 function confirmDelete(url, namaItem) {
     Swal.fire({
-        title: 'Hapus Data?',
-        text: `Anda yakin ingin menghapus "${namaItem}"?`,
+        title: '<span style="font-size: 1.25rem;">Konfirmasi Hapus</span>',
+        html: `<p style="font-size: 0.95rem; margin-bottom: 0;">Anda yakin ingin menghapus <b>"${namaItem}"</b>?</p>`,
         icon: 'warning',
+        width: '380px',
+        padding: '1rem',
         showCancelButton: true,
-        confirmButtonColor: '#dc3545',
-        cancelButtonColor: '#6c757d',
-        confirmButtonText: 'Ya, Hapus',
+        buttonsStyling: false,
+        customClass: {
+            popup: 'rounded-4 shadow-sm border',
+            confirmButton: 'btn btn-danger btn-sm px-3 mx-1',
+            cancelButton: 'btn btn-light btn-sm px-3 mx-1 border'
+        },
+        confirmButtonText: 'Hapus',
         cancelButtonText: 'Batal',
         reverseButtons: true
     }).then((result) => {
