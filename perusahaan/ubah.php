@@ -32,10 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Nama perusahaan minimal 2 karakter!';
     } elseif (!preg_match('/^[a-zA-Z\s]+$/', $nama)) {
         $error = 'Nama perusahaan hanya boleh berisi huruf dan spasi!';
-    } elseif (!preg_match('/^[0-9]{8,15}$/', $telp)) {
-        $error = 'Format telepon tidak valid! Harus berupa angka 8-15 digit.';
-    } elseif (!preg_match('/^[0-9]{8,15}$/', $fax)) {
-        $error = 'Format fax tidak valid! Harus berupa angka 8-15 digit.';
+    } elseif (!preg_match('/^[0-9\-\+ ]{8,20}$/', $telp)) {
+        $error = 'Format telepon tidak valid! Hanya boleh angka, strip, dan plus (8-20 karakter).';
+    } elseif (!preg_match('/^[0-9\-\+ ]{8,20}$/', $fax)) {
+        $error = 'Format fax tidak valid! Hanya boleh angka, strip, dan plus (8-20 karakter).';
     } else {
         if ($perusahaanObj->update($id, $nama, $alamat, $telp, $fax)) {
             header('Location: index.php?msg=ubah_ok');
@@ -89,14 +89,14 @@ include dirname(__DIR__) . '/includes/sidebar.php';
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="telp" class="form-label">Telepon <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="telp" name="telp"
-                           pattern="[0-9]{8,15}" title="Harus berupa angka, 8-15 digit"
+                    <input type="text" inputmode="numeric" class="form-control" id="telp" name="telp"
+                           pattern="[0-9\-\+ ]{8,20}" title="Harus berupa angka atau strip, 8-20 karakter"
                            value="<?php echo htmlspecialchars($data['telp'] ?? ''); ?>" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="fax" class="form-label">Fax <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="fax" name="fax"
-                           pattern="[0-9]{8,15}" title="Harus berupa angka, 8-15 digit"
+                    <input type="text" inputmode="numeric" class="form-control" id="fax" name="fax"
+                           pattern="[0-9\-\+ ]{8,20}" title="Harus berupa angka atau strip, 8-20 karakter"
                            value="<?php echo htmlspecialchars($data['fax'] ?? ''); ?>" required>
                 </div>
             </div>
