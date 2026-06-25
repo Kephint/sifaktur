@@ -8,8 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $perusahaan = trim($_POST['perusahaan_cust'] ?? '');
     $alamat     = trim($_POST['alamat'] ?? '');
 
-    if (!empty($nama)) {
-        $perusahaan = !empty($perusahaan) ? $perusahaan : null;
+    if (empty($nama) || empty($perusahaan) || empty($alamat)) {
+        $error = 'Semua kolom (Nama, Perusahaan, Alamat) wajib diisi!';
+    } elseif (!preg_match('/[a-zA-Z]/', $nama)) {
+        $error = 'Nama customer harus mengandung huruf!';
+    } else {
         $alamat     = !empty($alamat) ? $alamat : null;
 
         $stmt = $conn->prepare("INSERT INTO customer (nama_customer, perusahaan_cust, alamat) VALUES (?, ?, ?)");
@@ -18,8 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->close();
         header('Location: index.php?msg=tambah_ok');
         exit;
-    } else {
-        $error = 'Nama customer wajib diisi!';
     }
 }
 
@@ -56,16 +57,16 @@ include dirname(__DIR__) . '/includes/sidebar.php';
                 <div class="col-md-6 mb-3">
                     <label for="nama_customer" class="form-label">Nama Customer <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="nama_customer" name="nama_customer" 
-                           value="<?php echo htmlspecialchars($_POST['nama_customer'] ?? ''); ?>" required>
+                           value="<?php echo htmlspecialchars($_POST['nama_customer'] ?? ''); ?>" required minlength="2">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="perusahaan_cust" class="form-label">Perusahaan</label>
+                    <label for="perusahaan_cust" class="form-label">Perusahaan <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="perusahaan_cust" name="perusahaan_cust"
-                           value="<?php echo htmlspecialchars($_POST['perusahaan_cust'] ?? ''); ?>">
+                           value="<?php echo htmlspecialchars($_POST['perusahaan_cust'] ?? ''); ?>" required minlength="2">
                 </div>
                 <div class="col-md-12 mb-3">
-                    <label for="alamat" class="form-label">Alamat</label>
-                    <textarea class="form-control" id="alamat" name="alamat" rows="3"><?php echo htmlspecialchars($_POST['alamat'] ?? ''); ?></textarea>
+                    <label for="alamat" class="form-label">Alamat <span class="text-danger">*</span></label>
+                    <textarea class="form-control" id="alamat" name="alamat" rows="3" required minlength="5"><?php echo htmlspecialchars($_POST['alamat'] ?? ''); ?></textarea>
                 </div>
             </div>
             <hr>

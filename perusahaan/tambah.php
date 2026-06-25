@@ -11,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($nama) || empty($alamat) || empty($telp) || empty($fax)) {
         $error = 'Semua kolom (Nama, Alamat, Telepon, Fax) wajib diisi!';
+    } elseif (!preg_match('/[a-zA-Z]/', $nama)) {
+        $error = 'Nama perusahaan harus mengandung huruf!';
     } elseif (!preg_match('/^[0-9]{8,15}$/', $telp)) {
         $error = 'Format telepon tidak valid! Harus berupa angka 8-15 digit.';
     } elseif (!preg_match('/^[0-9]{8,15}$/', $fax)) {
