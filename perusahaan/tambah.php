@@ -11,6 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($nama) || empty($alamat) || empty($telp) || empty($fax)) {
         $error = 'Semua kolom (Nama, Alamat, Telepon, Fax) wajib diisi!';
+    } elseif (!preg_match('/[a-zA-Z]/', $nama)) {
+        $error = 'Nama perusahaan harus mengandung setidaknya satu huruf!';
     } elseif (!preg_match('/^[a-zA-Z\s\.\-\'&]+$/', $nama)) {
         $error = 'Nama perusahaan hanya boleh berisi huruf dan spasi!';
     } elseif (!preg_match('/^[0-9]{8,15}$/', $telp)) {

@@ -10,8 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($nama) || empty($perusahaan) || empty($alamat)) {
         $error = 'Semua kolom (Nama, Perusahaan, Alamat) wajib diisi!';
+    } elseif (!preg_match('/[a-zA-Z]/', $nama)) {
+        $error = 'Nama customer harus mengandung setidaknya satu huruf!';
     } elseif (!preg_match('/^[a-zA-Z\s\.\-\']+$/', $nama)) {
         $error = 'Nama customer hanya boleh berisi huruf dan spasi!';
+    } elseif (!preg_match('/[a-zA-Z]/', $perusahaan)) {
+        $error = 'Nama perusahaan harus mengandung setidaknya satu huruf!';
     } elseif (!preg_match('/^[a-zA-Z\s\.\-\'&]+$/', $perusahaan)) {
         $error = 'Nama perusahaan hanya boleh berisi huruf dan spasi!';
     } else {
