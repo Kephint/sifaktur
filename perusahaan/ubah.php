@@ -26,15 +26,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $telp   = trim($_POST['telp'] ?? '');
     $fax    = trim($_POST['fax'] ?? '');
 
-    if (!empty($nama)) {
+    if (empty($nama) || empty($alamat) || empty($telp) || empty($fax)) {
+        $error = 'Semua kolom (Nama, Alamat, Telepon, Fax) wajib diisi!';
+    } elseif (!preg_match('/^[0-9]{8,15}$/', $telp)) {
+        $error = 'Format telepon tidak valid! Harus berupa angka 8-15 digit.';
+    } elseif (!preg_match('/^[0-9]{8,15}$/', $fax)) {
+        $error = 'Format fax tidak valid! Harus berupa angka 8-15 digit.';
+    } else {
         if ($perusahaanObj->update($id, $nama, $alamat, $telp, $fax)) {
             header('Location: index.php?msg=ubah_ok');
             exit;
         } else {
             $error = 'Gagal mengubah data perusahaan. Silakan cek logs/error.log.';
         }
-    } else {
-        $error = 'Nama perusahaan wajib diisi!';
     }
 }
 
@@ -74,19 +78,21 @@ include dirname(__DIR__) . '/includes/sidebar.php';
                            value="<?php echo htmlspecialchars($data['nama_perusahaan']); ?>" required>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="alamat" class="form-label">Alamat</label>
+                    <label for="alamat" class="form-label">Alamat <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="alamat" name="alamat"
-                           value="<?php echo htmlspecialchars($data['alamat'] ?? ''); ?>">
+                           value="<?php echo htmlspecialchars($data['alamat'] ?? ''); ?>" required minlength="5">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="telp" class="form-label">Telepon</label>
+                    <label for="telp" class="form-label">Telepon <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="telp" name="telp"
-                           value="<?php echo htmlspecialchars($data['telp'] ?? ''); ?>">
+                           pattern="[0-9]{8,15}" title="Harus berupa angka, 8-15 digit"
+                           value="<?php echo htmlspecialchars($data['telp'] ?? ''); ?>" required>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="fax" class="form-label">Fax</label>
+                    <label for="fax" class="form-label">Fax <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="fax" name="fax"
-                           value="<?php echo htmlspecialchars($data['fax'] ?? ''); ?>">
+                           pattern="[0-9]{8,15}" title="Harus berupa angka, 8-15 digit"
+                           value="<?php echo htmlspecialchars($data['fax'] ?? ''); ?>" required>
                 </div>
             </div>
             <hr>
