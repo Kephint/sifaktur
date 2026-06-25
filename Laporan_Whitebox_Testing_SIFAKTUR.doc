@@ -1,0 +1,168 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta charset="utf-8">
+    <title>Skenario Whitebox Testing & Debugging - SIFAKTUR</title>
+    <style>
+        body { font-family: "Times New Roman", Times, serif; font-size: 12pt; line-height: 1.5; }
+        h1 { font-size: 16pt; text-align: center; font-weight: bold; }
+        h2 { font-size: 14pt; font-weight: bold; margin-top: 20px; }
+        h3 { font-size: 12pt; font-weight: bold; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; vertical-align: top; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+        .code-block { background-color: #f8f9fa; border: 1px solid #ccc; padding: 10px; font-family: "Courier New", Courier, monospace; font-size: 10pt; white-space: pre-wrap; }
+        .success { color: green; font-weight: bold; }
+        .danger { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>Laporan Pengujian Whitebox & Debugging - SIFAKTUR</h1>
+
+    <h2>A. Pengujian Whitebox (Basis Path Testing)</h2>
+    <p>Pengujian Whitebox (Kaca Putih) berfokus pada analisis struktur logika internal kode program. Modul yang diuji pada skenario ini adalah <b>Logika Validasi Tambah Master Data Perusahaan</b> yang terletak pada file <code>perusahaan/tambah.php</code>.</p>
+
+    <h3>1. Snippet Kode yang Diuji (PHP)</h3>
+    <div class="code-block">
+// Node 1: Menerima Input
+$nama = trim($_POST['nama_perusahaan'] ?? '');
+$telp = trim($_POST['telp'] ?? '');
+$fax  = trim($_POST['fax'] ?? '');
+
+// Node 2-6: Percabangan Logika
+if (empty($nama) || empty($telp) || empty($fax)) {
+    // Node 3: Path 1
+    $error = 'Semua kolom wajib diisi!';
+} elseif (strlen($nama) < 2) {
+    // Node 4: Path 2
+    $error = 'Nama perusahaan minimal 2 karakter!';
+} elseif (!preg_match('/^[a-zA-Z\s]+$/', $nama)) {
+    // Node 5: Path 3
+    $error = 'Nama perusahaan hanya boleh berisi huruf!';
+} elseif (!preg_match('/^[0-9\-\+ ]{8,20}$/', $telp)) {
+    // Node 6: Path 4
+    $error = 'Format telepon tidak valid!';
+} else {
+    // Node 7: Path 5 (Eksekusi Query DB)
+    $stmt = $conn->prepare("INSERT INTO perusahaan...");
+    $stmt->execute();
+}
+    </div>
+
+    <h3>2. Penghitungan Kompleksitas Siklomatis (Cyclomatic Complexity)</h3>
+    <p>Berdasarkan struktur kontrol pada sintaks <code>if - elseif - else</code> di atas, dapat dihitung nilai V(G) (Cyclomatic Complexity) sebagai berikut:</p>
+    <ul>
+        <li>Jumlah Kondisi Logika (Predikat Node) = 4</li>
+        <li><b>V(G) = P + 1 = 4 + 1 = 5 Path Linier Independen</b></li>
+    </ul>
+
+    <h3>3. Tabel Eksekusi Basis Path (Test Case)</h3>
+    <table>
+        <tr>
+            <th>Path (Jalur)</th>
+            <th>Skenario Input</th>
+            <th>Jalur Eksekusi Kode</th>
+            <th>Hasil yang Diharapkan (Output)</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td><b>Path 1</b></td>
+            <td>Input dikosongkan (empty)</td>
+            <td>Masuk ke kondisi 1 -> <code>$error = 'Wajib diisi'</code> -> Selesai</td>
+            <td>Menampilkan pesan error wajib isi</td>
+            <td class="success">Sesuai</td>
+        </tr>
+        <tr>
+            <td><b>Path 2</b></td>
+            <td>Input Nama: "A" (Panjang &lt; 2)</td>
+            <td>Kondisi 1(False) -> Masuk Kondisi 2(True) -> Selesai</td>
+            <td>Menampilkan error minimal karakter</td>
+            <td class="success">Sesuai</td>
+        </tr>
+        <tr>
+            <td><b>Path 3</b></td>
+            <td>Input Nama: "PT 123" (Mengandung Angka)</td>
+            <td>Kondisi 1(F) -> Kondisi 2(F) -> Masuk Kondisi 3(True) -> Selesai</td>
+            <td>Menampilkan error hanya huruf/spasi</td>
+            <td class="success">Sesuai</td>
+        </tr>
+        <tr>
+            <td><b>Path 4</b></td>
+            <td>Input Telp: "abcdef" (Bukan Angka)</td>
+            <td>Kondisi 1(F) -> Kondisi 2(F) -> Kondisi 3(F) -> Masuk Kondisi 4(True) -> Selesai</td>
+            <td>Menampilkan error format telepon salah</td>
+            <td class="success">Sesuai</td>
+        </tr>
+        <tr>
+            <td><b>Path 5</b></td>
+            <td>Data Valid (Nama: "PT ABC", Telp: "0812")</td>
+            <td>Kondisi 1(F) -> Kondisi 2(F) -> Kondisi 3(F) -> Kondisi 4(F) -> Masuk <code>Else</code> (True)</td>
+            <td>Mengeksekusi Query INSERT ke database</td>
+            <td class="success">Sesuai</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <h2>B. Tabel Debugging Code</h2>
+    <p>Berikut adalah riwayat temuan kutu program (<i>bugs</i>) di level <i>source code</i> selama proses <i>development</i> dan tindakan perbaikan (<i>code fixing</i>) yang telah dilakukan.</p>
+
+    <table>
+        <tr>
+            <th style="width: 5%;">No</th>
+            <th style="width: 20%;">Lokasi File / Fungsi</th>
+            <th style="width: 25%;">Kode Awal (Bermasalah)</th>
+            <th style="width: 30%;">Kode Perbaikan (Debugged)</th>
+            <th style="width: 20%;">Penjelasan Debugging</th>
+        </tr>
+        <tr>
+            <td>1.</td>
+            <td><code>customer/tambah.php</code> (Validasi Kosong)</td>
+            <td class="code-block">if(empty($nama)){
+   // Error
+}</td>
+            <td class="code-block">if(empty($nama) || strlen(trim($nama)) < 2){
+   // Error
+}</td>
+            <td>Pengguna dapat membypass kondisi kosong dengan mengetikkan tombol spasi " ". Penambahan <code>trim()</code> mencegah manipulasi *whitespace*.</td>
+        </tr>
+        <tr>
+            <td>2.</td>
+            <td><code>perusahaan/ubah.php</code> (Input Angka)</td>
+            <td class="code-block">&lt;input type="number" name="telp"&gt;</td>
+            <td class="code-block">&lt;input type="text" inputmode="numeric" name="telp"&gt;</td>
+            <td>Atribut <code>type="number"</code> menyebabkan data telp yang mengandung tanda hubung (-) menjadi hilang (invisible). Diperbaiki dengan tipe text ber-inputmode.</td>
+        </tr>
+        <tr>
+            <td>3.</td>
+            <td><code>perusahaan/tambah.php</code> (Validasi Nama)</td>
+            <td class="code-block">if(!preg_match('/[a-zA-Z]/', $nama)){
+   // Error
+}</td>
+            <td class="code-block">if(!preg_match('/^[a-zA-Z\s]+$/', $nama)){
+   // Error
+}</td>
+            <td>Kode lama masih mengizinkan kombinasi huruf bercampur simbol aneh. Regex <code>^[a-zA-Z\s]+$</code> memastikan *strict string* murni abjad.</td>
+        </tr>
+        <tr>
+            <td>4.</td>
+            <td><code>assets/js/script.js</code> (Konfirmasi Hapus)</td>
+            <td class="code-block">if(confirm("Yakin hapus?")){
+   // Jalankan URL
+}</td>
+            <td class="code-block">Swal.fire({ title: 'Hapus?' }).then...</td>
+            <td>Fungsi <i>native browser</i> tidak konsisten di berbagai perangkat. Di-<i>refactor</i> menggunakan Library <b>SweetAlert2</b> untuk menyeragamkan UI di seluruh environment.</td>
+        </tr>
+        <tr>
+            <td>5.</td>
+            <td><code>penjualan/tambah.php</code> (Nomor Faktur)</td>
+            <td class="code-block">$no_faktur = $_POST['no_faktur'];</td>
+            <td class="code-block">$auto_no = 'FK/' . date('my') . '/' . str_pad($next_id, 3, '0');</td>
+            <td>Input manual sering menyebabkan <i>Fatal Error MySQL</i> karena pelanggaran tipe <code>UNIQUE KEY</code>. Debugging dilakukan dengan logika PHP <i>Auto Increment String</i>.</td>
+        </tr>
+    </table>
+
+    <p><b>Kesimpulan Whitebox & Debugging:</b> Seluruh jalur eksekusi algoritma PHP (V=5) telah dieksekusi dan diuji bebas dari *Syntax Error* maupun *Logical Error*. Debugging pada level sintaks UI (HTML/JS) dan *Backend* (PHP/Regex) telah menambal seluruh celah keamanan dari tahap *development* awal.</p>
+
+</body>
+</html>

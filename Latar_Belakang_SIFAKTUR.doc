@@ -1,0 +1,45 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta charset="utf-8">
+    <title>Latar Belakang - SIFAKTUR</title>
+    <style>
+        @page { size: A4; margin: 2cm 2.5cm 2cm 3cm; }
+        body { font-family: "Times New Roman", Times, serif; font-size: 12pt; line-height: 1.8; }
+        h1 { font-size: 14pt; font-weight: bold; margin-top: 25px; margin-bottom: 10px; }
+        p { text-align: justify; margin-bottom: 10px; text-indent: 40px; }
+        .no-indent { text-indent: 0; }
+        ol { margin-left: 20px; margin-bottom: 15px; }
+        ol li { margin-bottom: 3px; }
+    </style>
+</head>
+<body>
+
+    <h1>LATAR BELAKANG</h1>
+
+    <p>Faktur penjualan merupakan salah satu dokumen administrasi bisnis yang sangat penting dalam kegiatan transaksi jual beli. Pada beberapa perusahaan, khususnya apotek dan distributor farmasi, proses pencatatan faktur penjualan masih dilakukan secara manual menggunakan buku atau spreadsheet sederhana, sehingga sering menimbulkan berbagai permasalahan, seperti pencatatan data yang kurang rapi, kesulitan dalam pencarian riwayat transaksi, kesalahan kalkulasi harga dan pajak, serta keterlambatan dalam pembuatan laporan penjualan.</p>
+
+    <p>Berdasarkan salah satu studi kasus pada Uji Kompetensi Pemrograman Universitas Pamulang (UNPAM), dibuatlah Sistem Informasi Faktur Penjualan (SIFAKTUR) berbasis web menggunakan PHP Native dan MySQL. Sistem ini dirancang untuk membantu proses pengelolaan data faktur penjualan agar lebih efektif, cepat, dan terstruktur, sehingga memudahkan petugas dalam melakukan pencatatan transaksi, pengelolaan master data, serta pembuatan dan pencetakan laporan penjualan secara otomatis.</p>
+
+    <h1>ANALISA DAN PERANCANGAN</h1>
+
+    <p class="no-indent">Kebutuhan sistem:</p>
+    <ol>
+        <li>Mengelola data perusahaan (nama, alamat, telepon, fax)</li>
+        <li>Mengelola data customer/pelanggan</li>
+        <li>Mengelola data produk (nama, harga, jenis, satuan, stok)</li>
+        <li>Mencatat transaksi faktur penjualan (multi-item, PPN, DP)</li>
+        <li>Melihat riwayat dan detail transaksi penjualan</li>
+        <li>Mencetak faktur penjualan dan laporan rekapitulasi</li>
+    </ol>
+
+    <p class="no-indent">Teknologi:</p>
+    <ol>
+        <li>PHP Native sebagai bahasa pemrograman</li>
+        <li>MySQL sebagai database</li>
+        <li>HTML, CSS, JavaScript, Bootstrap untuk tampilan</li>
+        <li>XAMPP sebagai server lokal</li>
+        <li>GitHub sebagai dokumentasi source code</li>
+    </ol>
+
+</body>
+</html>
