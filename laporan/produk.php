@@ -20,13 +20,13 @@ $result = $conn->query("SELECT * FROM produk ORDER BY nama_produk ASC");
 
 <div class="mb-3">
     <a href="cetak_produk.php" target="_blank" class="btn btn-primary-custom">
-        <i class="bi bi-printer"></i> Cetak Laporan
+        <i class="fa-solid fa-print"></i> Cetak Laporan
     </a>
 </div>
 
 <div class="content-card">
     <div class="card-header-custom">
-        <i class="bi bi-box-seam"></i> Ringkasan Stok Produk
+        <i class="fa-solid fa-box"></i> Ringkasan Stok Produk
     </div>
     <div class="card-body p-0">
         <div class="table-wrapper">
@@ -74,7 +74,7 @@ $result = $conn->query("SELECT * FROM produk ORDER BY nama_produk ASC");
                         <tr>
                             <td colspan="7">
                                 <div class="empty-state">
-                                    <i class="bi bi-box-seam d-block"></i>
+                                    <i class="fa-solid fa-box d-block"></i>
                                     <p>Belum ada data produk</p>
                                 </div>
                             </td>

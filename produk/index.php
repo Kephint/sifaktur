@@ -59,7 +59,7 @@ $result = $conn->query("SELECT * FROM produk ORDER BY id_produk DESC");
 
 <div class="content-card">
     <div class="card-header-custom">
-        <i class="bi bi-list-ul"></i> Daftar Produk
+        <i class="fa-solid fa-list-ul"></i> Daftar Produk
     </div>
     <div class="card-body p-0">
         <div class="table-wrapper">
@@ -97,11 +97,11 @@ $result = $conn->query("SELECT * FROM produk ORDER BY id_produk DESC");
                             <td>
                                 <div class="btn-group-action justify-content-center">
                                     <a href="ubah.php?id=<?php echo $row['id_produk']; ?>" class="text-warning fs-5 mx-1" title="Ubah">
-                                        <i class="bi bi-pencil-fill"></i>
+                                        <i class="fa-solid fa-pen"></i>
                                     </a>
                                     <button type="button" class="btn btn-link text-danger p-0 fs-5 mx-1 border-0 text-decoration-none" title="Hapus"
                                         onclick="confirmDelete('hapus.php?id=<?php echo $row['id_produk']; ?>', '<?php echo addslashes($row['nama_produk']); ?>')">
-                                        <i class="bi bi-trash-fill"></i>
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </div>
                             </td>
@@ -111,7 +111,7 @@ $result = $conn->query("SELECT * FROM produk ORDER BY id_produk DESC");
                         <tr>
                             <td colspan="7">
                                 <div class="empty-state">
-                                    <i class="bi bi-box-seam d-block"></i>
+                                    <i class="fa-solid fa-box d-block"></i>
                                     <p>Belum ada data produk</p>
                                 </div>
                             </td>

@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Faktur Penjualan';
+$page_title = 'Penjualan';
 require_once dirname(__DIR__) . '/config/koneksi.php';
 include dirname(__DIR__) . '/includes/header.php';
 include dirname(__DIR__) . '/includes/sidebar.php';
@@ -35,11 +35,11 @@ $result = $conn->query("
 
 
 <div class="page-header">
-    <h2></i> Faktur Penjualan</h2>
+    <h2></i> Penjualan</h2>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo $base_url; ?>/index.php">Beranda</a></li>
-            <li class="breadcrumb-item active">Faktur Penjualan</li>
+            <li class="breadcrumb-item active">Penjualan</li>
         </ol>
     </nav>
 </div>
@@ -61,7 +61,7 @@ $result = $conn->query("
 
 <div class="content-card">
     <div class="card-header-custom">
-        <i class="bi bi-list-ul"></i> Daftar Faktur Penjualan
+        <i class="fa-solid fa-list-ul"></i> Daftar Penjualan
     </div>
     <div class="card-body p-0">
         <div class="table-wrapper">
@@ -96,14 +96,14 @@ $result = $conn->query("
                             <td>
                                 <div class="btn-group-action justify-content-center">
                                     <a href="cetak.php?id=<?php echo $row['id_faktur']; ?>" target="_blank" class="text-info fs-5 mx-1" title="Cetak">
-                                        <i class="bi bi-printer-fill"></i>
+                                        <i class="fa-solid fa-print"></i>
                                     </a>
                                     <a href="ubah.php?id=<?php echo $row['id_faktur']; ?>" class="text-warning fs-5 mx-1" title="Ubah">
-                                        <i class="bi bi-pencil-fill"></i>
+                                        <i class="fa-solid fa-pen"></i>
                                     </a>
                                     <button type="button" class="btn btn-link text-danger p-0 fs-5 mx-1 border-0 text-decoration-none" title="Hapus"
                                         onclick="confirmDelete('hapus.php?id=<?php echo $row['id_faktur']; ?>', '<?php echo addslashes($row['no_faktur']); ?>')">
-                                        <i class="bi bi-trash-fill"></i>
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </div>
                             </td>
@@ -113,7 +113,7 @@ $result = $conn->query("
                         <tr>
                             <td colspan="8">
                                 <div class="empty-state">
-                                    <i class="bi bi-receipt d-block"></i>
+                                    <i class="fa-solid fa-receipt d-block"></i>
                                     <p>Belum ada data faktur penjualan</p>
                                 </div>
                             </td>

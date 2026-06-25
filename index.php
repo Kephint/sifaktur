@@ -37,7 +37,7 @@ $faktur_terbaru = $conn->query("
         <div class="stat-card card-primary animate-fade-in">
             <div class="d-flex align-items-center gap-3">
                 <div class="stat-icon bg-primary">
-                    <i class="bi bi-building"></i>
+                    <i class="fa-solid fa-building"></i>
                 </div>
                 <div>
                     <div class="stat-value"><?php echo $total_perusahaan; ?></div>
@@ -50,7 +50,7 @@ $faktur_terbaru = $conn->query("
         <div class="stat-card card-success animate-fade-in">
             <div class="d-flex align-items-center gap-3">
                 <div class="stat-icon bg-success">
-                    <i class="bi bi-people"></i>
+                    <i class="fa-solid fa-users"></i>
                 </div>
                 <div>
                     <div class="stat-value"><?php echo $total_customer; ?></div>
@@ -63,7 +63,7 @@ $faktur_terbaru = $conn->query("
         <div class="stat-card card-warning animate-fade-in">
             <div class="d-flex align-items-center gap-3">
                 <div class="stat-icon bg-warning">
-                    <i class="bi bi-box-seam"></i>
+                    <i class="fa-solid fa-box"></i>
                 </div>
                 <div>
                     <div class="stat-value"><?php echo $total_produk; ?></div>
@@ -76,7 +76,7 @@ $faktur_terbaru = $conn->query("
         <div class="stat-card card-info animate-fade-in">
             <div class="d-flex align-items-center gap-3">
                 <div class="stat-icon bg-info">
-                    <i class="bi bi-receipt"></i>
+                    <i class="fa-solid fa-receipt"></i>
                 </div>
                 <div>
                     <div class="stat-value"><?php echo $total_faktur; ?></div>

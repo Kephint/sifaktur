@@ -65,7 +65,8 @@ function formatTanggalIndo($datetime) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cetak Faktur <?php echo htmlspecialchars($faktur['no_faktur']); ?></title>
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/fontawesome/css/solid.css">
     <style>
         body { 
             background: #fff; 
@@ -111,10 +112,10 @@ function formatTanggalIndo($datetime) {
 
 <div class="no-print" style="padding:1rem; background:#f0f4f8; text-align:center; margin-bottom:20px;">
     <button onclick="window.print()" class="btn btn-primary btn-sm">
-        <i class="bi bi-printer"></i> Cetak Faktur
+        <i class="fa-solid fa-print"></i> Cetak Faktur
     </button>
     <button onclick="window.close()" class="btn btn-secondary btn-sm">
-        <i class="bi bi-x-lg"></i> Tutup
+        <i class="fa-solid fa-xmark"></i> Tutup
     </button>
 </div>
 

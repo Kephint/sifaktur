@@ -62,7 +62,7 @@ $data_perusahaan = $perusahaanObj->getAll();
 
 <div class="content-card">
     <div class="card-header-custom">
-        <i class="bi bi-list-ul"></i> Daftar Perusahaan
+        <i class="fa-solid fa-list-ul"></i> Daftar Perusahaan
     </div>
     <div class="card-body p-0">
         <div class="table-wrapper">
@@ -89,11 +89,11 @@ $data_perusahaan = $perusahaanObj->getAll();
                             <td>
                                 <div class="btn-group-action justify-content-center">
                                     <a href="ubah.php?id=<?php echo $row['id_perusahaan']; ?>" class="text-warning fs-5 mx-1" title="Ubah">
-                                        <i class="bi bi-pencil-fill"></i>
+                                        <i class="fa-solid fa-pen"></i>
                                     </a>
                                     <button type="button" class="btn btn-link text-danger p-0 fs-5 mx-1 border-0 text-decoration-none" title="Hapus"
                                         onclick="confirmDelete('hapus.php?id=<?php echo $row['id_perusahaan']; ?>', '<?php echo addslashes($row['nama_perusahaan']); ?>')">
-                                        <i class="bi bi-trash-fill"></i>
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </div>
                             </td>
@@ -103,7 +103,7 @@ $data_perusahaan = $perusahaanObj->getAll();
                         <tr>
                             <td colspan="6">
                                 <div class="empty-state">
-                                    <i class="bi bi-building d-block"></i>
+                                    <i class="fa-solid fa-building d-block"></i>
                                     <p>Belum ada data perusahaan</p>
                                 </div>
                             </td>

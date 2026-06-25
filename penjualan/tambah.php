@@ -254,10 +254,10 @@ include dirname(__DIR__) . '/includes/sidebar.php';
     
     <div class="d-flex gap-2 mb-4">
         <button type="submit" class="btn btn-success-custom">
-            <i class="bi bi-check-lg"></i> Simpan Faktur
+            <i class="fa-solid fa-check"></i> Simpan Faktur
         </button>
         <a href="index.php" class="btn btn-secondary">
-            <i class="bi bi-arrow-left"></i> Kembali
+            <i class="fa-solid fa-arrow-left"></i> Kembali
         </a>
     </div>
 </form>

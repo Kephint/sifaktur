@@ -55,14 +55,14 @@ $result = $conn->query("SELECT * FROM customer ORDER BY id_customer DESC");
         <i class="bi bi-plus-circle"></i> Tambah Customer
     </a>
     <a href="cetak.php" target="_blank" class="btn btn-info-custom">
-        <i class="bi bi-printer"></i> Cetak Daftar
+        <i class="fa-solid fa-print"></i> Cetak Daftar
     </a>
 </div>
 
 
 <div class="content-card">
     <div class="card-header-custom">
-        <i class="bi bi-list-ul"></i> Daftar Customer
+        <i class="fa-solid fa-list-ul"></i> Daftar Customer
     </div>
     <div class="card-body p-0">
         <div class="table-wrapper">
@@ -87,11 +87,11 @@ $result = $conn->query("SELECT * FROM customer ORDER BY id_customer DESC");
                             <td>
                                 <div class="btn-group-action justify-content-center">
                                     <a href="ubah.php?id=<?php echo $row['id_customer']; ?>" class="text-warning fs-5 mx-1" title="Ubah">
-                                        <i class="bi bi-pencil-fill"></i>
+                                        <i class="fa-solid fa-pen"></i>
                                     </a>
                                     <button type="button" class="btn btn-link text-danger p-0 fs-5 mx-1 border-0 text-decoration-none" title="Hapus"
                                         onclick="confirmDelete('hapus.php?id=<?php echo $row['id_customer']; ?>', '<?php echo addslashes($row['nama_customer']); ?>')">
-                                        <i class="bi bi-trash-fill"></i>
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </div>
                             </td>
@@ -101,7 +101,7 @@ $result = $conn->query("SELECT * FROM customer ORDER BY id_customer DESC");
                         <tr>
                             <td colspan="5">
                                 <div class="empty-state">
-                                    <i class="bi bi-people d-block"></i>
+                                    <i class="fa-solid fa-users d-block"></i>
                                     <p>Belum ada data customer</p>
                                 </div>
                             </td>

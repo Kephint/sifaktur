@@ -22,7 +22,8 @@ if ($current_page === 'ujikom') {
     
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/css/bootstrap.min.css">
     
-    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/fontawesome/css/solid.css">
     
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/css/style.css">
 </head>
@@ -36,6 +37,6 @@ if ($current_page === 'ujikom') {
     </div>
     <div class="header-right">
         <span class="d-none d-md-inline"><i class="bi bi-calendar3"></i> <?php echo date('d M Y'); ?></span>
-        <span class="badge-user"><i class="bi bi-person-circle"></i> Admin</span>
+        <span class="badge-user"><i class="fa-solid fa-circle-user"></i> Admin</span>
     </div>
 </header>

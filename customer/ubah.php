@@ -59,7 +59,7 @@ include dirname(__DIR__) . '/includes/sidebar.php';
 
 <div class="content-card">
     <div class="card-header-custom">
-        <i class="bi bi-people"></i> Form Ubah Customer
+        <i class="fa-solid fa-users"></i> Form Ubah Customer
     </div>
     <div class="card-body">
         <form method="POST" action="">
@@ -82,10 +82,10 @@ include dirname(__DIR__) . '/includes/sidebar.php';
             <hr>
             <div class="d-flex gap-2">
                 <button type="submit" class="btn btn-success-custom">
-                    <i class="bi bi-check-lg"></i> Simpan Perubahan
+                    <i class="fa-solid fa-check"></i> Simpan Perubahan
                 </button>
                 <a href="index.php" class="btn btn-secondary">
-                    <i class="bi bi-arrow-left"></i> Kembali
+                    <i class="fa-solid fa-arrow-left"></i> Kembali
                 </a>
             </div>
         </form>

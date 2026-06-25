@@ -10,7 +10,8 @@ $result = $conn->query("SELECT * FROM produk ORDER BY nama_produk ASC");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cetak Laporan Produk — APOTEK Zenin</title>
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/fontawesome/css/solid.css">
     <style>
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
@@ -57,10 +58,10 @@ $result = $conn->query("SELECT * FROM produk ORDER BY nama_produk ASC");
 
 <div class="no-print mb-3" style="max-width:1000px; margin:0 auto; padding:0 40px;">
     <button onclick="window.print()" class="btn btn-primary btn-sm">
-        <i class="bi bi-printer"></i> Cetak Laporan
+        <i class="fa-solid fa-print"></i> Cetak Laporan
     </button>
     <button onclick="window.close()" class="btn btn-secondary btn-sm">
-        <i class="bi bi-x-lg"></i> Tutup
+        <i class="fa-solid fa-xmark"></i> Tutup
     </button>
 </div>
 

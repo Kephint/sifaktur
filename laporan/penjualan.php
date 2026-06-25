@@ -49,7 +49,7 @@ include dirname(__DIR__) . '/includes/sidebar.php';
             </div>
             <div class="col-md-4">
                 <button type="submit" class="btn btn-primary-custom w-100">
-                    <i class="bi bi-search"></i> Tampilkan Data
+                    <i class="fa-solid fa-magnifying-glass"></i> Tampilkan Data
                 </button>
             </div>
         </form>
@@ -58,13 +58,13 @@ include dirname(__DIR__) . '/includes/sidebar.php';
 
 <div class="mb-3">
     <a href="cetak_penjualan.php?start_date=<?php echo $start_date; ?>&end_date=<?php echo $end_date; ?>" target="_blank" class="btn btn-success-custom">
-        <i class="bi bi-printer"></i> Cetak Laporan (PDF/Print)
+        <i class="fa-solid fa-print"></i> Cetak Laporan (PDF/Print)
     </a>
 </div>
 
 <div class="content-card">
     <div class="card-header-custom">
-        <i class="bi bi-receipt"></i> Data Transaksi Penjualan (Periode: <?php echo date('d/m/Y', strtotime($start_date)) . ' s.d. ' . date('d/m/Y', strtotime($end_date)); ?>)
+        <i class="fa-solid fa-receipt"></i> Data Transaksi Penjualan (Periode: <?php echo date('d/m/Y', strtotime($start_date)) . ' s.d. ' . date('d/m/Y', strtotime($end_date)); ?>)
     </div>
     <div class="card-body p-0">
         <div class="table-wrapper">
@@ -108,7 +108,7 @@ include dirname(__DIR__) . '/includes/sidebar.php';
                         <tr>
                             <td colspan="7">
                                 <div class="empty-state">
-                                    <i class="bi bi-receipt d-block"></i>
+                                    <i class="fa-solid fa-receipt d-block"></i>
                                     <p>Tidak ada transaksi pada periode ini.</p>
                                 </div>
                             </td>
