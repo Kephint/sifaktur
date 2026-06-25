@@ -69,13 +69,13 @@ include dirname(__DIR__) . '/includes/sidebar.php';
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="telp" class="form-label">Telepon <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="telp" name="telp"
+                    <input type="number" class="form-control" id="telp" name="telp"
                            pattern="[0-9]{8,15}" title="Harus berupa angka, 8-15 digit"
                            value="<?php echo htmlspecialchars($_POST['telp'] ?? ''); ?>" required>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="fax" class="form-label">Fax <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="fax" name="fax"
+                    <input type="number" class="form-control" id="fax" name="fax"
                            pattern="[0-9]{8,15}" title="Harus berupa angka, 8-15 digit"
                            value="<?php echo htmlspecialchars($_POST['fax'] ?? ''); ?>" required>
                 </div>
