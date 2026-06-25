@@ -32,11 +32,11 @@ if ($current_page === 'ujikom') {
 
 <header class="top-header">
     <div class="brand">
-        <i class="bi bi-capsule"></i>
+        <i class="fa-solid fa-capsules"></i>
         <span>SIFAKTUR</span>
     </div>
     <div class="header-right">
-        <span class="d-none d-md-inline"><i class="bi bi-calendar3"></i> <?php echo date('d M Y'); ?></span>
+        <span class="d-none d-md-inline"><i class="fa-regular fa-calendar"></i> <?php echo date('d M Y'); ?></span>
         <span class="badge-user"><i class="fa-solid fa-circle-user"></i> Admin</span>
     </div>
 </header>
