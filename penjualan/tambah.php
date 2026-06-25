@@ -17,7 +17,7 @@ $produks->data_seek(0);
 $res = $conn->query("SELECT MAX(id_faktur) as max_id FROM faktur");
 $row = $res->fetch_assoc();
 $next_id = ($row['max_id'] ?? 0) + 1;
-$auto_no = 'INV-' . date('ymd') . '-' . str_pad($next_id, 4, '0', STR_PAD_LEFT);
+$auto_no = 'FK/' . date('my') . '/' . str_pad($next_id, 3, '0', STR_PAD_LEFT);
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
