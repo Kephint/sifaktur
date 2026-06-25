@@ -43,6 +43,20 @@
                 <span>Faktur Penjualan</span>
             </a>
         </li>
+
+        <li class="menu-label">Laporan</li>
+        <li class="menu-item">
+            <a href="<?php echo $base_url; ?>/laporan/produk.php" class="<?php echo ($current_page === 'laporan_produk') ? 'active' : ''; ?>">
+                <i class="bi bi-file-earmark-bar-graph"></i>
+                <span>Laporan Produk</span>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="<?php echo $base_url; ?>/laporan/penjualan.php" class="<?php echo ($current_page === 'laporan_penjualan') ? 'active' : ''; ?>">
+                <i class="bi bi-graph-up"></i>
+                <span>Laporan Penjualan</span>
+            </a>
+        </li>
     </ul>
 </aside>
 
